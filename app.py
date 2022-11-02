@@ -69,7 +69,7 @@ if selected == "Entry":
 
         #時間選択
         time = st.time_input(
-            '時間',datetime.time(timezone(timedelta(hours=9)))
+            '時間',datetime.time()
         )
 
         #勤務
