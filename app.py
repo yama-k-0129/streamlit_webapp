@@ -5,7 +5,7 @@ from operator import index
 import streamlit as st
 from PIL import Image
 import pandas as pd
-import datetime import datetime, timezone,timedelta
+from datetime import datetime, timezone,timedelta
 from streamlit_option_menu import option_menu #pip install streamlit-option-menu
 import database as db #local import 
 
