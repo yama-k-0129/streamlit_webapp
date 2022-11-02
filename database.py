@@ -1,6 +1,6 @@
 import os
 from unicodedata import name
-
+import streamlit as st
 from deta import Deta #pip install deta
 # from dotenv import load_dotenv
 
