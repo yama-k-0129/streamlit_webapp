@@ -1,3 +1,6 @@
+deta
+database
+Image
 streamlit
 streamlit_option_menu
 alembic==1.8.1
