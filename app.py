@@ -5,7 +5,7 @@ from operator import index
 import streamlit as st
 from PIL import Image
 import pandas as pd
-import datetime
+import datetime import datetime, timezone,timedelta
 from streamlit_option_menu import option_menu #pip install streamlit-option-menu
 import database as db #local import 
 
@@ -69,7 +69,7 @@ if selected == "Entry":
 
         #時間選択
         time = st.time_input(
-            '時間'
+            '時間',datetime.time(timezone(timedelta(hours=9)))
         )
 
         #勤務
