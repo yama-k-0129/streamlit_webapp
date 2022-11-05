@@ -5,7 +5,7 @@ from operator import index
 import streamlit as st
 from PIL import Image
 import pandas as pd
-import datetime
+import datetime, timezone, timedelta
 from streamlit_option_menu import option_menu #pip install streamlit-option-menu
 import database as db #local import 
 import smtplib, ssl
@@ -85,11 +85,11 @@ if selected == "Entry":
         
         #日付選択
         date = st.date_input(
-            '日付')
+            '日付', timezone(timedelta(hours=9)))
 
         #時間選択
         time = st.time_input(
-            '時間'
+            '時間',timezone(timedelta(hours=9))
         )
 
         #勤務
