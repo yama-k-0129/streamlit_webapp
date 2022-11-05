@@ -85,11 +85,11 @@ if selected == "Entry":
         
         #日付選択
         date = st.date_input(
-            '日付', timezone(timedelta(hours=9)))
+            '日付', datetime.now(timezone(timedelta(hours=9))))
 
         #時間選択
         time = st.time_input(
-            '時間',timezone(timedelta(hours=9))
+            '時間',datetime.now(timezone(timedelta(hours=9)))
         )
 
         #勤務
