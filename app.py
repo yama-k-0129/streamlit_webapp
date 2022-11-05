@@ -5,9 +5,17 @@ from operator import index
 import streamlit as st
 from PIL import Image
 import pandas as pd
-from datetime import datetime, timezone,timedelta
+import datetime
 from streamlit_option_menu import option_menu #pip install streamlit-option-menu
 import database as db #local import 
+import smtplib, ssl
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+import os
+from dotenv import load_dotenv #pip install python-dotenv
+
+#Load the environment variables
+pas=os.getenv("pass")
 
 
 
@@ -33,9 +41,6 @@ def get_all_daytime():
     daytimes = [item["key"] for item in items]
     return daytimes
 
-months = list(calendar.month_name[1:])
-names = ['泉野珠穂','早崎水彩','藤原未奈','清水麻衣','長畑智大','安田希亜良','山村孝輝','上田','鈴木','馬場','宮原']
-
 
 if selected == "Entry":
     st.text('名前、仕事内容、時間を入力してください。')
@@ -44,7 +49,14 @@ if selected == "Entry":
     # import streamlit as st
 
     
-    
+    work_category = st.radio(
+            '業務内容',
+            ('データ解析補助','研究補佐','講義資料作成','講義補佐','TA','その他')
+        )
+    if work_category == 'その他':
+            work_category = st.text_input(
+                '業務内容'
+            )
 
     with st.form(key='profile_form'):
     #テキストボックス
@@ -56,20 +68,29 @@ if selected == "Entry":
             ('泉野珠穂', '早崎水彩','藤原未奈','清水麻衣','長畑智大','安田希亜良','山村孝輝','上田','鈴木','馬場','宮原'),
             key = "name"
         )
+        
+        place = st.text_input('場所')
+        
 
         #複数選択
-        work_category = st.radio(
-            '業務内容',
-            ('データ解析補助','研究補佐','講義資料作成','講義補佐','TA')
-        )
-
+        # work_category = st.radio(
+        #     '業務内容',
+        #     ('データ解析補助','研究補佐','講義資料作成','講義補佐','TA','その他')
+        # )
+        # if work_category == 'その他':
+        #     work_category = st.text_input(
+        #         '業務内容'
+        #     )
+            
+        detail = st.text_input('詳細内容')
+        
         #日付選択
         date = st.date_input(
             '日付')
 
         #時間選択
         time = st.time_input(
-            '時間',datetime.now(timezone(timedelta(hours=9)))
+            '時間'
         )
 
         #勤務
@@ -88,6 +109,47 @@ if selected == "Entry":
         # print(f'cancel_btn: {cancel_btn}')
         if submit_btn:
             st.text(f'{name_category}さん！{time}に{switch}しました。')
+            # Outlook設定
+            my_account = 'kouki0129kouki0129@gmail.com'
+            my_password = pas
+
+            def send_outlook_mail(msg):
+                """
+                引数msgをOutlookで送信
+                """
+                server = smtplib.SMTP('smtp.gmail.com', 587)
+                server.ehlo()
+                server.starttls()
+                server.ehlo()
+                # ログインしてメール送信
+                server.login(my_account, my_password)
+                server.send_message(msg)
+
+            def make_mime(mail_to, subject, body):
+                """
+                引数をMIME形式に変換
+                """
+                msg = MIMEText(body, 'plain') #メッセージ本文
+                msg['Subject'] = subject #件名
+                msg['To'] = mail_to #宛先
+                msg['From'] = my_account #送信元
+                return msg
+
+            def send_my_message():
+                """
+                メイン処理
+                """
+                # MIME形式に変換
+                msg = make_mime(
+                    mail_to='on12kyamamura@ec.usp.ac.jp', #送信したい宛先を指定
+                    subject=f'出退勤記録簿報告について　瀧研究室　{name_category}',
+                    body=f'いつもお世話になっております。瀧研究室{name_category}と申します。\n{time}で{switch}致します。\n目的：{work_category}\nよろしくお願いいたします。'
+                    )
+                # gmailに送信
+                send_outlook_mail(msg)
+            
+            send_my_message()
+
             daytime = str(date) + "_" + str(time) + "_" + str(name_category)
             name = str(name_category)
             work = str(work_category)
@@ -146,6 +208,12 @@ if selected == "Private Report":
             
 
             st.table(df)
+            import base64
+            csv = df.to_csv(index=False,encoding='shift_jis')  
+            b64 = base64.b64encode(csv.encode('utf-8-sig')).decode()
+            href = f'<a href="data:application/octet-stream;base64,{b64}" download="result.csv">download</a>'
+            st.markdown(f"ダウンロードする {href}", unsafe_allow_html=True)
+
 
 
 
