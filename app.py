@@ -12,11 +12,10 @@ import smtplib, ssl
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 import os
-from dotenv import load_dotenv #pip install python-dotenv
+# from dotenv import load_dotenv#pip install python-dotenv
 
 #Load the environment variables
-pas=os.getenv("pass")
-
+pas=st.secrets["pass"]
 
 
 
