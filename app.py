@@ -12,6 +12,8 @@ import smtplib, ssl
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 import os
+import schedule
+from time import sleep
 # from dotenv import load_dotenv#pip install python-dotenv
 
 #Load the environment variables
@@ -107,7 +109,13 @@ if selected == "Entry":
         # print(f'submit_btn: {submit_btn}')
         # print(f'cancel_btn: {cancel_btn}')
         if submit_btn:
-            st.text(f'{name_category}さん！{time}に{switch}しました。')
+            daytime = str(date) + "_" + str(time) + "_" + str(name_category)
+            name = str(name_category)
+            work = str(work_category)
+            date = str(date)
+            time = str(time) 
+            switch = str(switch)
+            db.insert_profile(daytime, name, date, work, time, switch)
             # Outlook設定
             my_account = 'kouki0129kouki0129@gmail.com'
             my_password = pas
@@ -146,16 +154,15 @@ if selected == "Entry":
                     )
                 # gmailに送信
                 send_outlook_mail(msg)
+                return schedule.CancelJob()
             
-            send_my_message()
-
-            daytime = str(date) + "_" + str(time) + "_" + str(name_category)
-            name = str(name_category)
-            work = str(work_category)
-            date = str(date)
-            time = str(time) 
-            switch = str(switch)
-            db.insert_profile(daytime, name, date, work, time, switch)
+            schedule.every().day.at(time).do(send_my_message)
+            st.text(f'{name_category}さん！{time}に{switch}しました。')
+            
+            while True:
+                schedule.run_pending()
+                sleep(1)
+            
             # data = pd.DataFrame([[name_category,work_category,date,start_time]],columns =['name','workcategory','date','starttime'])
             # df = df.append(data)
             # st.text(f'{name_category}さん！{start_time}から勤務を開始しました。')
