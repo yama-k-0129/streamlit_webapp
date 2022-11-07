@@ -163,9 +163,9 @@ if selected == "Entry":
             schedule.every().day.at(time).do(send_my_message)
             st.text(f'{name_category}さん！{time}に{switch}しました。')
             
-            while True:
-                schedule.run_pending()
-                sleep(1)
+#             while True:
+#                 schedule.run_pending()
+#                 sleep(1)
             
             # data = pd.DataFrame([[name_category,work_category,date,start_time]],columns =['name','workcategory','date','starttime'])
             # df = df.append(data)
