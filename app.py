@@ -109,10 +109,10 @@ if selected == "Entry":
         # print(f'submit_btn: {submit_btn}')
         # print(f'cancel_btn: {cancel_btn}')
         if submit_btn:
-            dt = datetime.combine(date,time)
-            dt = dt.astimezone(timezone.utc)
-            time_s = dt.time()
-            time_s = str(time_s)
+#             dt = datetime.combine(date,time)
+#             dt = dt.astimezone(timezone.utc)
+#             time_s = dt.time()
+#             time_s = str(time_s)
             daytime = str(date) + "_" + str(time) + "_" + str(name_category)
             name = str(name_category)
             work = str(work_category)
@@ -160,7 +160,7 @@ if selected == "Entry":
                 send_outlook_mail(msg)
                 return schedule.CancelJob()
             
-            schedule.every().day.at(time_s).do(send_my_message)
+            schedule.every().day.at(time).do(send_my_message)
             st.text(f'{name_category}さん！{time}に{switch}しました。')
             
             while True:
