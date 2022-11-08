@@ -109,9 +109,9 @@ if selected == "Entry":
         # print(f'submit_btn: {submit_btn}')
         # print(f'cancel_btn: {cancel_btn}')
         if submit_btn:
-            dt = datetime.combine(date,time)
-            dt_utc = dt - datetime.timedelta(hours=9)
-            time_utc = dt_utc.time()
+            dt = datetime.combine(date,time)#日本時間のdatetimeオブジェクトが生成
+            dt_utc = dt.astimezone(datetime.timezone.utc)#時差が反映され-9時間され，tzinfoが付加されたdatetimeオブジェクトが生成
+            time_utc = dt_utc.time() 
             time_utc = str(time_utc)
             daytime = str(date) + "_" + str(time) + "_" + str(name_category)
             name = str(name_category)
