@@ -121,14 +121,15 @@ if selected == "Entry":
             switch = str(switch)
             db.insert_profile(daytime, name, date, work, time, switch)
             # Outlook設定
-            my_account = 'kouki0129kouki0129@gmail.com'
+            my_account = 'kentaro-taki@zc4.so-net.ne.jp'
             my_password = pas
+            my_adress = 'on12kyamamura@ec.usp.ac.jp'
 
             def send_outlook_mail(msg):
                 """
                 引数msgをOutlookで送信
                 """
-                server = smtplib.SMTP('smtp.gmail.com', 587)
+                server = smtplib.SMTP('mail.so-net.ne.jp', 587)
                 server.ehlo()
                 server.starttls()
                 server.ehlo()
@@ -143,7 +144,7 @@ if selected == "Entry":
                 msg = MIMEText(body, 'plain') #メッセージ本文
                 msg['Subject'] = subject #件名
                 msg['To'] = mail_to #宛先
-                msg['From'] = my_account #送信元
+                msg['From'] =  my_adress#送信元
                 return msg
 
             def send_my_message():
