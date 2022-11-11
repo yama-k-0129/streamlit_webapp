@@ -104,7 +104,8 @@ if selected == "Entry":
             '日付', datetime.now(timezone(timedelta(hours=9))))
         #時間選択
         time = st.time_input(
-            '時間',(12, 00))
+            '時間',datetime.now(timezone(timedelta(hours=9)))
+        )
         #勤務
         switch = st.radio(
             "出退勤",
