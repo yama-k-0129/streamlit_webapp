@@ -53,34 +53,34 @@ if selected == "Entry":
             key = "name"
         )
     if name_category == '泉野珠穂':
-        adress = st.secrets['tama_adress']
+        adress = st.secrets["tama_adress"]
         number = 2252003
     elif name_category == '早崎水彩':
-        adress = st.secrets['zaki_adress']
+        adress = st.secrets["zaki_adress"]
         number = 2252020
     elif name_category == '藤原未奈':
-        adress = st.secrets['wara_adress']
+        adress = st.secrets["wara_adress"]
         number = 2252022
     elif name_category == '清水麻衣':
-        adress = st.secrets['maimai_adress']
+        adress = st.secrets["maimai_adress"]
         number = 1912012
     elif name_category == '安田希亜良':
-        adress = st.secrets['ara_adress']
+        adress = st.secrets["ara_adress"]
         number = 1912039
     elif name_category == '山村孝輝':
-        adress = st.secrets['yama_adress']
+        adress = st.secrets["yama_adress"]
         number = 1912040
     elif name_category == '鈴木美結':
-        adress = st.secrets['miyu_adress']
+        adress = st.secrets["miyu_adress"]
         number = 2012015
     elif name_category == '馬場大輝':
-        adress = st.secrets['baba_adress']
+        adress = st.secrets["baba_adress"]
         number = 2012027
     elif name_category == '宮原舞':
-        adress = st.secrets['miyamai_adress']
+        adress = st.secrets["miyamai_adress"]
         number = 2012035
     elif name_category == '坂本愛実':
-        adress = st.secrets['saka_adress']
+        adress = st.secrets["saka_adress"]
         number = 2212016
     else:
         print('名前を入力してください')
