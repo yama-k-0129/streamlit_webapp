@@ -6,6 +6,7 @@ import streamlit as st
 from PIL import Image
 import pandas as pd
 from datetime import datetime, timezone, timedelta
+import time
 from streamlit_option_menu import option_menu #pip install streamlit-option-menu
 import database as db #local import 
 import smtplib, ssl
