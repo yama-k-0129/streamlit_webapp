@@ -17,6 +17,7 @@ from time import sleep
 # from dotenv import load_dotenv#pip install python-dotenv
 
 #Load the environment variables
+account=st.secrets["account"]
 pas=st.secrets["pass"]
 
 
@@ -45,14 +46,49 @@ def get_all_daytime():
 
 if selected == "Entry":
     st.text('名前、仕事内容、時間を入力してください。')
-
-    # code = '''
-    # import streamlit as st
+    
+    name_category = st.radio(
+            '名前',
+            ('泉野珠穂', '早崎水彩','藤原未奈','清水麻衣','安田希亜良','山村孝輝','鈴木美結','馬場大輝','宮原舞','坂本愛実'),
+            key = "name"
+        )
+    if name_category == '泉野珠穂':
+        adress = st.secrets['tama_adress']
+        number = 2252003
+    elif name_category == '早崎水彩':
+        adress = st.secrets['zaki_adress']
+        number = 2252020
+    elif name_category == '藤原未奈':
+        adress = st.secrets['wara_adress']
+        number = 2252022
+    elif name_category == '清水麻衣':
+        adress = st.secrets['maimai_adress']
+        number = 1912012
+    elif name_category == '安田希亜良':
+        adress = st.secrets['ara_adress']
+        number = 1912039
+    elif name_category == '山村孝輝':
+        adress = st.secrets['yama_adress']
+        number = 1912040
+    elif name_category == '鈴木美結':
+        adress = st.secrets['miyu_adress']
+        number = 2012015
+    elif name_category == '馬場大輝':
+        adress = st.secrets['baba_adress']
+        number = 2012027
+    elif name_category == '宮原舞':
+        adress = st.secrets['miyamai_adress']
+        number = 2012035
+    elif name_category == '坂本愛実':
+        adress = st.secrets['saka_adress']
+        number = 2212016
+    else:
+        print('名前を入力してください')
 
     
     work_category = st.radio(
             '業務内容',
-            ('データ解析補助','研究補佐','講義資料作成','講義補佐','TA','その他')
+            ('解析・資料作成補助','流域生物調査','地域測量','GISデータ作成','球磨川流域治水研究補助','その他')
         )
     if work_category == 'その他':
             work_category = st.text_input(
@@ -60,49 +96,20 @@ if selected == "Entry":
             )
 
     with st.form(key='profile_form'):
-    #テキストボックス
-        # address = st.text_input('住所')
-
-        #セレクトボックス#ラジオボタンならst.radioにするだけ
-        name_category = st.radio(
-            '名前',
-            ('泉野珠穂', '早崎水彩','藤原未奈','清水麻衣','長畑智大','安田希亜良','山村孝輝','上田','鈴木','馬場','宮原'),
-            key = "name"
-        )
-        
-        place = st.text_input('場所')
-        
-
-        #複数選択
-        # work_category = st.radio(
-        #     '業務内容',
-        #     ('データ解析補助','研究補佐','講義資料作成','講義補佐','TA','その他')
-        # )
-        # if work_category == 'その他':
-        #     work_category = st.text_input(
-        #         '業務内容'
-        #     )
-            
+        place = st.text_input('場所')    
         detail = st.text_input('詳細内容')
-        
         #日付選択
         date = st.date_input(
             '日付', datetime.now(timezone(timedelta(hours=9))))
-
         #時間選択
         time = st.time_input(
-            '時間',datetime.now(timezone(timedelta(hours=9)))
+            '時間',datetime.time(hour=12,minute=0)
         )
-
         #勤務
         switch = st.radio(
             "出退勤",
             ('出勤','退勤')
         )
-
-
-
-
         #ボタン
         submit_btn = st.form_submit_button('送信')
         # cancel_btn = st.form_submit_button('退勤')
@@ -121,9 +128,9 @@ if selected == "Entry":
             switch = str(switch)
             db.insert_profile(daytime, name, date, work, time, switch)
             # Outlook設定
-            my_account = 'kentaro-taki@zc4.so-net.ne.jp'
+            my_account = account
             my_password = pas
-            my_adress = 'on12kyamamura@ec.usp.ac.jp'
+            my_adress = adress
 
             def send_outlook_mail(msg):
                 """
@@ -154,8 +161,8 @@ if selected == "Entry":
                 # MIME形式に変換
                 msg = make_mime(
                     mail_to='on12kyamamura@ec.usp.ac.jp', #送信したい宛先を指定
-                    subject=f'出退勤記録簿報告について　瀧研究室　{name_category}',
-                    body=f'いつもお世話になっております。瀧研究室{name_category}と申します。\n{time}で{switch}致します。\n目的：{work_category}\nよろしくお願いいたします。'
+                    subject=f'出退勤記録簿報告について　瀧研究室 {number}{name_category}',
+                    body=f'お世話になっております。瀧研究室{number}{name_category}と申します。\n{time}で{switch}致します。\n目的：{work_category}\n内容：{detail}\nよろしくお願いいたします。'
                     )
                 # gmailに送信
                 send_outlook_mail(msg)
@@ -168,27 +175,7 @@ if selected == "Entry":
                 schedule.run_pending()
                 sleep(1)
             
-            # data = pd.DataFrame([[name_category,work_category,date,start_time]],columns =['name','workcategory','date','starttime'])
-            # df = df.append(data)
-            # st.text(f'{name_category}さん！{start_time}から勤務を開始しました。')
-            # st.table(df)
-            # st.text(f'年齢層：{name_category}')
-            # st.text(f'趣味：{", ".join(hobby)}')
-        # if cancel_btn:
-        #     tdelta = datetime.strptime({start_time}) - datetime.strptime({stop_time})
-        #     data = [stop_time,tdelta]
-        #     sr2 = pd.Series(data, name="sr2")
-        #     df = pd.concat([df, pd.DataFrame(data= sr2.values.reshape(1,-1),columns=['stop_time','time'])],axis=0)
-        #     # df['stoptime'] = stop_time
-        #     # df['time'] = df['starttime'] - df['stoptime']
-        #     st.text(f'{name_category}さん、{stop_time}までお疲れさまでした！')
-
-    # st.table(df)
-    # import base64
-    # csv = df.to_csv(index=False)  
-    # b64 = base64.b64encode(csv.encode()).decode()
-    # href = f'<a href="data:application/octet-stream;base64,{b64}" download="result.csv">download</a>'
-    # st.markdown(f"ダウンロードする {href}", unsafe_allow_html=True)
+           
 #画像
     image = Image.open('20221025_055301993_iOS.jpg')
     st.image(image, width=500)
