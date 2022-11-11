@@ -103,7 +103,7 @@ if selected == "Entry":
             '日付', datetime.now(timezone(timedelta(hours=9))))
         #時間選択
         time = st.time_input(
-            '時間',values=datetime.time(hour=12,minute=0)
+            '時間',value=datetime.time(hour=12,minute=0)
         )
         #勤務
         switch = st.radio(
@@ -112,9 +112,6 @@ if selected == "Entry":
         )
         #ボタン
         submit_btn = st.form_submit_button('送信')
-        # cancel_btn = st.form_submit_button('退勤')
-        # print(f'submit_btn: {submit_btn}')
-        # print(f'cancel_btn: {cancel_btn}')
         if submit_btn:
             dt = datetime.combine(date,time)#日本時間のdatetimeオブジェクトが生成
             dt_utc = dt - timedelta(hours=9)#時差が反映され-9時間され，tzinfoが付加されたdatetimeオブジェクトが生成
