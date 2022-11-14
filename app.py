@@ -167,13 +167,8 @@ if selected == "Entry":
                 return schedule.CancelJob()
             
             schedule.every().day.at(time_utc).do(send_my_message)
-            st.text(f'{name_category}さん！{time}に{switch}しました。')
-            
-            while True:
-                schedule.run_pending()
-                sleep(1)
-            
-           
+            schedule.run_pending()
+            st.text(f'{name_category}さん！{time}に{switch}しました。')        
 #画像
     image = Image.open('20221025_055301993_iOS.jpg')
     st.image(image, width=500)
