@@ -95,17 +95,17 @@ if selected == "Entry":
             work_category = st.text_input(
                 '業務内容'
             )
+    #日付選択
+    date = st.date_input(
+        '日付', datetime.now(timezone(timedelta(hours=9))))
+    #時間選択
+    time = st.time_input(
+        '時間',datetime.now(timezone(timedelta(hours=9)))
+    )
 
     with st.form(key='profile_form'):
         place = st.text_input('場所')    
         detail = st.text_input('詳細内容')
-        #日付選択
-        date = st.date_input(
-            '日付', datetime.now(timezone(timedelta(hours=9))))
-        #時間選択
-        time = st.time_input(
-            '時間',datetime.now(timezone(timedelta(hours=9)))
-        )
         #勤務
         switch = st.radio(
             "出退勤",
