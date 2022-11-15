@@ -164,7 +164,7 @@ if selected == "Entry":
                             )
                         # gmailに送信
                         send_outlook_mail(msg)
-                time.sleep(wait_time)
+                sleep(wait_time)
                 send_tama_message()
                 st.text(f'{name_category}さん！{time}に{switch}しました。') 
             elif name_category == '早崎水彩':
