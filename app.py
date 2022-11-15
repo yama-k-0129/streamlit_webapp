@@ -115,10 +115,8 @@ if selected == "Entry":
         submit_btn = st.form_submit_button('送信')
         if submit_btn:
             dt = datetime.combine(date,time)#日本時間のdatetimeオブジェクトが生成
-            dt_utc = dt - timedelta(hours=9)#時差が反映され-9時間され，tzinfoが付加されたdatetimeオブジェクトが生成
-            time_utc = dt_utc.time() 
-            deltat = (dt_utc - datetime.now()).seconds
-            time_utc = str(time_utc)
+            dt_utc = dt - timedelta(hours=9)#時差が反映され-9時間され，tzinfoが付加されたdatetimeオブジェクトが生成 
+            wait_time = (dt_utc - datetime.now()).seconds
             daytime = str(date) + "_" + str(time) + "_" + str(name_category)
             name = str(name_category)
             work = str(work_category)
@@ -166,8 +164,7 @@ if selected == "Entry":
                             )
                         # gmailに送信
                         send_outlook_mail(msg)
-                        return schedule.CancelJob()
-                time.sleep(delta_seconds)
+                time.sleep(wait_time)
                 send_tama_message()
                 st.text(f'{name_category}さん！{time}に{switch}しました。') 
             elif name_category == '早崎水彩':
