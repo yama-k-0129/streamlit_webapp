@@ -169,8 +169,8 @@ if selected == "Entry":
                         # gmailに送信
                         send_outlook_mail(msg)
                         return schedule.CancelJob()
-                  time.sleep(delta_seconds)
-                  send_tama_message()
+                 time.sleep(delta_seconds)
+                 send_tama_message()
 #                 schedule.every().day.at(time_utc).do(send_tama_message)
 #                 st.text(f'{name_category}さん！{time}に{switch}しました。')  
 #                 while True:
