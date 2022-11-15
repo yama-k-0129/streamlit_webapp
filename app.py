@@ -166,11 +166,11 @@ if selected == "Entry":
                         # gmailに送信
                         send_outlook_mail(msg)
                         return schedule.CancelJob()
-                    schedule.every().day.at(time_utc).do(send_tama_message)
-                    st.text(f'{name_category}さん！{time}に{switch}しました。')  
-                    while True:
-                        schedule.run_pending()
-                        sleep(31)
+                schedule.every().day.at(time_utc).do(send_tama_message)
+                st.text(f'{name_category}さん！{time}に{switch}しました。')  
+                while True:
+                    schedule.run_pending()
+                    sleep(31)
             elif name_category == '早崎水彩':
                 def send_zaki_message():
                     """
