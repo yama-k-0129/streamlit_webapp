@@ -180,12 +180,9 @@ if selected == "Entry":
                         )
                     # gmailに送信
                     send_outlook_mail(msg)
-                    return schedule.CancelJob()
-                schedule.every().day.at(time_utc).do(send_zaki_message)
-                st.text(f'{name_category}さん！{time}に{switch}しました。')  
-                while True:
-                    schedule.run_pending()
-                    sleep(31)
+                sleep(wait_time)
+                send_zaki_message()
+                st.text(f'{name_category}さん！{time}に{switch}しました。') 
             elif name_category == '藤原未奈':
                 def send_wara_message():
                     """
@@ -199,12 +196,9 @@ if selected == "Entry":
                         )
                     # gmailに送信
                     send_outlook_mail(msg)
-                    return schedule.CancelJob()       
-                schedule.every().day.at(time_utc).do(send_wara_message)
-                st.text(f'{name_category}さん！{time}に{switch}しました。')  
-                while True:
-                    schedule.run_pending()
-                    sleep(31)
+                sleep(wait_time)
+                send_wara_message()
+                st.text(f'{name_category}さん！{time}に{switch}しました。') 
             elif name_category == '清水麻衣':
                 def send_mai_message():
                     """
@@ -218,12 +212,9 @@ if selected == "Entry":
                         )
                     # gmailに送信
                     send_outlook_mail(msg)
-                    return schedule.CancelJob()            
-                schedule.every().day.at(time_utc).do(send_mai_message)
-                st.text(f'{name_category}さん！{time}に{switch}しました。')  
-                while True:
-                    schedule.run_pending()
-                    sleep(31)
+                sleep(wait_time)
+                send_mai_message()
+                st.text(f'{name_category}さん！{time}に{switch}しました。') 
             elif name_category == '安田希亜良':
                 def send_ara_message():
                     """
@@ -237,12 +228,9 @@ if selected == "Entry":
                         )
                     # gmailに送信
                     send_outlook_mail(msg)
-                    return schedule.CancelJob()          
-                schedule.every().day.at(time_utc).do(send_ara_message)
-                st.text(f'{name_category}さん！{time}に{switch}しました。')  
-                while True:
-                    schedule.run_pending()
-                    sleep(31)
+                sleep(wait_time)
+                send_ara_message()
+                st.text(f'{name_category}さん！{time}に{switch}しました。') 
             elif name_category == '山村孝輝':
                 def send_yama_message():
                     """
@@ -256,12 +244,9 @@ if selected == "Entry":
                         )
                     # gmailに送信
                     send_outlook_mail(msg)
-                    return schedule.CancelJob()
-                schedule.every().day.at(time_utc).do(send_yama_message)
-                st.text(f'{name_category}さん！{time}に{switch}しました。')  
-                while True:
-                    schedule.run_pending()
-                    sleep(31)
+                sleep(wait_time)
+                send_yama_message()
+                st.text(f'{name_category}さん！{time}に{switch}しました。') 
             elif name_category == '鈴木美結':
                 def send_miyu_message():
                     """
@@ -275,12 +260,9 @@ if selected == "Entry":
                         )
                     # gmailに送信
                     send_outlook_mail(msg)
-                    return schedule.CancelJob()     
-                schedule.every().day.at(time_utc).do(send_miyu_message)
-                st.text(f'{name_category}さん！{time}に{switch}しました。')  
-                while True:
-                    schedule.run_pending()
-                    sleep(31)
+                sleep(wait_time)
+                send_miyu_message()
+                st.text(f'{name_category}さん！{time}に{switch}しました。') 
             elif name_category == '馬場大輝':
                 def send_baba_message():
                     """
@@ -294,12 +276,9 @@ if selected == "Entry":
                         )
                     # gmailに送信
                     send_outlook_mail(msg)
-                    return schedule.CancelJob()
-                schedule.every().day.at(time_utc).do(send_baba_message)
-                st.text(f'{name_category}さん！{time}に{switch}しました。')  
-                while True:
-                    schedule.run_pending()
-                    sleep(31)
+                sleep(wait_time)
+                send_baba_message()
+                st.text(f'{name_category}さん！{time}に{switch}しました。') 
             elif name_category == '宮原舞':
                 def send_miyamai_message():
                     """
@@ -313,12 +292,9 @@ if selected == "Entry":
                         )
                     # gmailに送信
                     send_outlook_mail(msg)
-                    return schedule.CancelJob()
-                schedule.every().day.at(time_utc).do(send_miyamai_message)
-                st.text(f'{name_category}さん！{time}に{switch}しました。')  
-                while True:
-                    schedule.run_pending()
-                    sleep(31)
+                sleep(wait_time)
+                send_miyamai_message()
+                st.text(f'{name_category}さん！{time}に{switch}しました。') 
             elif name_category == '坂本愛実':
                 def send_saka_message():
                     """
@@ -332,16 +308,11 @@ if selected == "Entry":
                         )
                     # gmailに送信
                     send_outlook_mail(msg)
-                    return schedule.CancelJob()          
-                schedule.every().day.at(time_utc).do(send_saka_message)
-                st.text(f'{name_category}さん！{time}に{switch}しました。')  
-                while True:
-                    schedule.run_pending()
-                    sleep(31)
+                sleep(wait_time)
+                send_saka_message()
+                st.text(f'{name_category}さん！{time}に{switch}しました。') 
             else:
                 print('適切に入力してください。')
-                
-            st.text(f'{name_category}さん！{time}に{switch}しました。')  
             
 #画像
     image = Image.open('20221025_055301993_iOS.jpg')
