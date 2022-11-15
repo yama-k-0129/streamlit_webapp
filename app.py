@@ -151,26 +151,202 @@ if selected == "Entry":
                 msg['To'] = mail_to #宛先
                 msg['From'] =  my_adress#送信元
                 return msg
-
-            def send_my_message():
-                """
-                メイン処理
-                """
-                # MIME形式に変換
-                msg = make_mime(
-                    mail_to='on12kyamamura@ec.usp.ac.jp', #送信したい宛先を指定
-                    subject=f'出退勤記録簿報告について　瀧研究室 {number}{name_category}',
-                    body=f'お世話になっております。瀧研究室{number}{name_category}と申します。\n{time}で{switch}致します。\n目的：{work_category}\n内容：{detail}\nよろしくお願いいたします。'
-                    )
-                # gmailに送信
-                send_outlook_mail(msg)
-                return schedule.CancelJob()
             
-            schedule.every().day.at(time_utc).do(send_my_message)
+            if name_category == '泉野珠穂':
+                def send_tama_message():
+                        """
+                        メイン処理
+                        """
+                        # MIME形式に変換
+                        msg = make_mime(
+                            mail_to='on12kyamamura@ec.usp.ac.jp', #送信したい宛先を指定
+                            subject=f'出退勤記録簿報告について　瀧研究室 {number}{name_category}',
+                            body=f'お世話になっております。瀧研究室{number}{name_category}と申します。\n{time}で{switch}致します。\n目的：{work_category}\n内容：{detail}\nよろしくお願いいたします。'
+                            )
+                        # gmailに送信
+                        send_outlook_mail(msg)
+                        return schedule.CancelJob()
+                    schedule.every().day.at(time_utc).do(send_tama_message)
+                    st.text(f'{name_category}さん！{time}に{switch}しました。')  
+                    while True:
+                        schedule.run_pending()
+                        sleep(31)
+            elif name_category == '早崎水彩':
+                def send_zaki_message():
+                    """
+                    メイン処理
+                    """
+                    # MIME形式に変換
+                    msg = make_mime(
+                        mail_to='on12kyamamura@ec.usp.ac.jp', #送信したい宛先を指定
+                        subject=f'出退勤記録簿報告について　瀧研究室 {number}{name_category}',
+                        body=f'お世話になっております。瀧研究室{number}{name_category}と申します。\n{time}で{switch}致します。\n目的：{work_category}\n内容：{detail}\nよろしくお願いいたします。'
+                        )
+                    # gmailに送信
+                    send_outlook_mail(msg)
+                    return schedule.CancelJob()
+                schedule.every().day.at(time_utc).do(send_zaki_message)
+                st.text(f'{name_category}さん！{time}に{switch}しました。')  
+                while True:
+                    schedule.run_pending()
+                    sleep(31)
+            elif name_category == '藤原未奈':
+                def send_wara_message():
+                    """
+                    メイン処理
+                    """
+                    # MIME形式に変換
+                    msg = make_mime(
+                        mail_to='on12kyamamura@ec.usp.ac.jp', #送信したい宛先を指定
+                        subject=f'出退勤記録簿報告について　瀧研究室 {number}{name_category}',
+                        body=f'お世話になっております。瀧研究室{number}{name_category}と申します。\n{time}で{switch}致します。\n目的：{work_category}\n内容：{detail}\nよろしくお願いいたします。'
+                        )
+                    # gmailに送信
+                    send_outlook_mail(msg)
+                    return schedule.CancelJob()       
+                schedule.every().day.at(time_utc).do(send_wara_message)
+                st.text(f'{name_category}さん！{time}に{switch}しました。')  
+                while True:
+                    schedule.run_pending()
+                    sleep(31)
+            elif name_category == '清水麻衣':
+                def send_mai_message():
+                    """
+                    メイン処理
+                    """
+                    # MIME形式に変換
+                    msg = make_mime(
+                        mail_to='on12kyamamura@ec.usp.ac.jp', #送信したい宛先を指定
+                        subject=f'出退勤記録簿報告について　瀧研究室 {number}{name_category}',
+                        body=f'お世話になっております。瀧研究室{number}{name_category}と申します。\n{time}で{switch}致します。\n目的：{work_category}\n内容：{detail}\nよろしくお願いいたします。'
+                        )
+                    # gmailに送信
+                    send_outlook_mail(msg)
+                    return schedule.CancelJob()            
+                schedule.every().day.at(time_utc).do(send_mai_message)
+                st.text(f'{name_category}さん！{time}に{switch}しました。')  
+                while True:
+                    schedule.run_pending()
+                    sleep(31)
+            elif name_category == '安田希亜良':
+                def send_ara_message():
+                    """
+                    メイン処理
+                    """
+                    # MIME形式に変換
+                    msg = make_mime(
+                        mail_to='on12kyamamura@ec.usp.ac.jp', #送信したい宛先を指定
+                        subject=f'出退勤記録簿報告について　瀧研究室 {number}{name_category}',
+                        body=f'お世話になっております。瀧研究室{number}{name_category}と申します。\n{time}で{switch}致します。\n目的：{work_category}\n内容：{detail}\nよろしくお願いいたします。'
+                        )
+                    # gmailに送信
+                    send_outlook_mail(msg)
+                    return schedule.CancelJob()          
+                schedule.every().day.at(time_utc).do(send_ara_message)
+                st.text(f'{name_category}さん！{time}に{switch}しました。')  
+                while True:
+                    schedule.run_pending()
+                    sleep(31)
+            elif name_category == '山村孝輝':
+                def send_yama_message():
+                    """
+                    メイン処理
+                    """
+                    # MIME形式に変換
+                    msg = make_mime(
+                        mail_to='on12kyamamura@ec.usp.ac.jp', #送信したい宛先を指定
+                        subject=f'出退勤記録簿報告について　瀧研究室 {number}{name_category}',
+                        body=f'お世話になっております。瀧研究室{number}{name_category}と申します。\n{time}で{switch}致します。\n目的：{work_category}\n内容：{detail}\nよろしくお願いいたします。'
+                        )
+                    # gmailに送信
+                    send_outlook_mail(msg)
+                    return schedule.CancelJob()
+                schedule.every().day.at(time_utc).do(send_yama_message)
+                st.text(f'{name_category}さん！{time}に{switch}しました。')  
+                while True:
+                    schedule.run_pending()
+                    sleep(31)
+            elif name_category == '鈴木美結':
+                def send_miyu_message():
+                    """
+                    メイン処理
+                    """
+                    # MIME形式に変換
+                    msg = make_mime(
+                        mail_to='on12kyamamura@ec.usp.ac.jp', #送信したい宛先を指定
+                        subject=f'出退勤記録簿報告について　瀧研究室 {number}{name_category}',
+                        body=f'お世話になっております。瀧研究室{number}{name_category}と申します。\n{time}で{switch}致します。\n目的：{work_category}\n内容：{detail}\nよろしくお願いいたします。'
+                        )
+                    # gmailに送信
+                    send_outlook_mail(msg)
+                    return schedule.CancelJob()     
+                schedule.every().day.at(time_utc).do(send_miyu_message)
+                st.text(f'{name_category}さん！{time}に{switch}しました。')  
+                while True:
+                    schedule.run_pending()
+                    sleep(31)
+            elif name_category == '馬場大輝':
+                def send_baba_message():
+                    """
+                    メイン処理
+                    """
+                    # MIME形式に変換
+                    msg = make_mime(
+                        mail_to='on12kyamamura@ec.usp.ac.jp', #送信したい宛先を指定
+                        subject=f'出退勤記録簿報告について　瀧研究室 {number}{name_category}',
+                        body=f'お世話になっております。瀧研究室{number}{name_category}と申します。\n{time}で{switch}致します。\n目的：{work_category}\n内容：{detail}\nよろしくお願いいたします。'
+                        )
+                    # gmailに送信
+                    send_outlook_mail(msg)
+                    return schedule.CancelJob()
+                schedule.every().day.at(time_utc).do(send_baba_message)
+                st.text(f'{name_category}さん！{time}に{switch}しました。')  
+                while True:
+                    schedule.run_pending()
+                    sleep(31)
+            elif name_category == '宮原舞':
+                def send_miyamai_message():
+                    """
+                    メイン処理
+                    """
+                    # MIME形式に変換
+                    msg = make_mime(
+                        mail_to='on12kyamamura@ec.usp.ac.jp', #送信したい宛先を指定
+                        subject=f'出退勤記録簿報告について　瀧研究室 {number}{name_category}',
+                        body=f'お世話になっております。瀧研究室{number}{name_category}と申します。\n{time}で{switch}致します。\n目的：{work_category}\n内容：{detail}\nよろしくお願いいたします。'
+                        )
+                    # gmailに送信
+                    send_outlook_mail(msg)
+                    return schedule.CancelJob()
+                schedule.every().day.at(time_utc).do(send_miyamai_message)
+                st.text(f'{name_category}さん！{time}に{switch}しました。')  
+                while True:
+                    schedule.run_pending()
+                    sleep(31)
+            elif name_category == '坂本愛実':
+                def send_saka_message():
+                    """
+                    メイン処理
+                    """
+                    # MIME形式に変換
+                    msg = make_mime(
+                        mail_to='on12kyamamura@ec.usp.ac.jp', #送信したい宛先を指定
+                        subject=f'出退勤記録簿報告について　瀧研究室 {number}{name_category}',
+                        body=f'お世話になっております。瀧研究室{number}{name_category}と申します。\n{time}で{switch}致します。\n目的：{work_category}\n内容：{detail}\nよろしくお願いいたします。'
+                        )
+                    # gmailに送信
+                    send_outlook_mail(msg)
+                    return schedule.CancelJob()          
+                schedule.every().day.at(time_utc).do(send_saka_message)
+                st.text(f'{name_category}さん！{time}に{switch}しました。')  
+                while True:
+                    schedule.run_pending()
+                    sleep(31)
+            else:
+                print('適切に入力してください。')
+                
             st.text(f'{name_category}さん！{time}に{switch}しました。')  
-            while True:
-                schedule.run_pending()
-                sleep(31)
+            
 #画像
     image = Image.open('20221025_055301993_iOS.jpg')
     st.image(image, width=500)
