@@ -98,7 +98,7 @@ if selected == "Entry":
             )
     #日付選択
     date = st.date_input(
-        '日付', datetime.now(timezone(timedelta(hours=9))))
+        '日付', datetime.datetime.now(timezone(timedelta(hours=9))))
     #時間選択
     time = st.time_input(
         '時間',value=datetime.time(hour=12,minute=0)
@@ -115,9 +115,9 @@ if selected == "Entry":
         #ボタン
         submit_btn = st.form_submit_button('送信')
         if submit_btn:
-            dt = datetime.combine(date,time)#日本時間のdatetimeオブジェクトが生成
+            dt = datetime.datetime.combine(date,time)#日本時間のdatetimeオブジェクトが生成
             dt_utc = dt - timedelta(hours=9)#時差が反映され-9時間され，tzinfoが付加されたdatetimeオブジェクトが生成 
-            wait_time = (dt_utc - datetime.now()).seconds
+            wait_time = (dt_utc - datetime.datetime.now()).seconds
             daytime = str(date) + "_" + str(time) + "_" + str(name_category)
             name = str(name_category)
             work = str(work_category)
