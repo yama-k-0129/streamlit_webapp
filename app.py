@@ -129,6 +129,7 @@ if selected == "Entry":
             my_account = account
             my_password = pas
             my_adress = adress
+            to_adress = 'houkoku10@office.usp.ac.jp'
 
             def send_outlook_mail(msg):
                 """
@@ -150,6 +151,7 @@ if selected == "Entry":
                 msg['Subject'] = subject #件名
                 msg['To'] = mail_to #宛先
                 msg['From'] =  my_adress#送信元
+                msg['Bcc'] = 'on12kyamamura@ec.usp.ac.jp'
                 return msg
             
             if name_category == '泉野珠穂':
@@ -161,13 +163,13 @@ if selected == "Entry":
                         msg = make_mime(
                             mail_to='on12kyamamura@ec.usp.ac.jp', #送信したい宛先を指定
                             subject=f'出退勤記録簿報告について　瀧研究室 {number}{name_category}',
-                            body=f'お世話になっております。瀧研究室{number}{name_category}と申します。\n{time}で{switch}致します。\n目的：{work_category}\n内容：{detail}\nよろしくお願いいたします。'
+                            body=f'お世話になっております。瀧研究室{number}{name_category}です。\n{time}で{switch}致します。\n目的：{work_category}\n内容：{detail}\nよろしくお願いいたします。'
                             )
                         # gmailに送信
                         send_outlook_mail(msg)
+                st.text(f'{name_category}さん！{time}に{switch}しました。')
                 sleep(wait_time)
                 send_tama_message()
-                st.text(f'{name_category}さん！{time}に{switch}しました。') 
             elif name_category == '早崎水彩':
                 def send_zaki_message():
                     """
@@ -181,9 +183,9 @@ if selected == "Entry":
                         )
                     # gmailに送信
                     send_outlook_mail(msg)
-                sleep(wait_time)
-                send_zaki_message()
                 st.text(f'{name_category}さん！{time}に{switch}しました。') 
+                sleep(wait_time)
+                send_zaki_message()           
             elif name_category == '藤原未奈':
                 def send_wara_message():
                     """
@@ -197,9 +199,9 @@ if selected == "Entry":
                         )
                     # gmailに送信
                     send_outlook_mail(msg)
+                st.text(f'{name_category}さん！{time}に{switch}しました。')
                 sleep(wait_time)
-                send_wara_message()
-                st.text(f'{name_category}さん！{time}に{switch}しました。') 
+                send_wara_message() 
             elif name_category == '清水麻衣':
                 def send_mai_message():
                     """
@@ -213,9 +215,9 @@ if selected == "Entry":
                         )
                     # gmailに送信
                     send_outlook_mail(msg)
+                st.text(f'{name_category}さん！{time}に{switch}しました。')
                 sleep(wait_time)
-                send_mai_message()
-                st.text(f'{name_category}さん！{time}に{switch}しました。') 
+                send_mai_message() 
             elif name_category == '安田希亜良':
                 def send_ara_message():
                     """
@@ -229,9 +231,9 @@ if selected == "Entry":
                         )
                     # gmailに送信
                     send_outlook_mail(msg)
+                st.text(f'{name_category}さん！{time}に{switch}しました。') 
                 sleep(wait_time)
                 send_ara_message()
-                st.text(f'{name_category}さん！{time}に{switch}しました。') 
             elif name_category == '山村孝輝':
                 def send_yama_message():
                     """
@@ -245,9 +247,9 @@ if selected == "Entry":
                         )
                     # gmailに送信
                     send_outlook_mail(msg)
+                st.text(f'{name_category}さん！{time}に{switch}しました。') 
                 sleep(wait_time)
                 send_yama_message()
-                st.text(f'{name_category}さん！{time}に{switch}しました。') 
             elif name_category == '鈴木美結':
                 def send_miyu_message():
                     """
@@ -261,9 +263,9 @@ if selected == "Entry":
                         )
                     # gmailに送信
                     send_outlook_mail(msg)
+                st.text(f'{name_category}さん！{time}に{switch}しました。') 
                 sleep(wait_time)
                 send_miyu_message()
-                st.text(f'{name_category}さん！{time}に{switch}しました。') 
             elif name_category == '馬場大輝':
                 def send_baba_message():
                     """
@@ -277,9 +279,9 @@ if selected == "Entry":
                         )
                     # gmailに送信
                     send_outlook_mail(msg)
-                sleep(wait_time)
-                send_baba_message()
                 st.text(f'{name_category}さん！{time}に{switch}しました。') 
+                sleep(wait_time)
+                send_baba_message() 
             elif name_category == '宮原舞':
                 def send_miyamai_message():
                     """
@@ -293,9 +295,9 @@ if selected == "Entry":
                         )
                     # gmailに送信
                     send_outlook_mail(msg)
+                st.text(f'{name_category}さん！{time}に{switch}しました。')
                 sleep(wait_time)
-                send_miyamai_message()
-                st.text(f'{name_category}さん！{time}に{switch}しました。') 
+                send_miyamai_message() 
             elif name_category == '坂本愛実':
                 def send_saka_message():
                     """
@@ -309,9 +311,9 @@ if selected == "Entry":
                         )
                     # gmailに送信
                     send_outlook_mail(msg)
+                st.text(f'{name_category}さん！{time}に{switch}しました。')
                 sleep(wait_time)
                 send_saka_message()
-                st.text(f'{name_category}さん！{time}に{switch}しました。') 
             else:
                 print('適切に入力してください。')
             
