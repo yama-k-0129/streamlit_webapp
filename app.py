@@ -129,7 +129,7 @@ if selected == "Entry":
             my_account = account
             my_password = pas
             my_adress = adress
-            to_adress = 'houkoku10@office.usp.ac.jp'
+            to_adress = 'on12kyamamura@ec.usp.ac.jp'
 
             def send_outlook_mail(msg):
                 """
@@ -143,13 +143,13 @@ if selected == "Entry":
                 server.login(my_account, my_password)
                 server.send_message(msg)
 
-            def make_mime(mail_to, subject, body):
+            def make_mime(subject, body):
                 """
                 引数をMIME形式に変換
                 """
                 msg = MIMEText(body, 'plain') #メッセージ本文
                 msg['Subject'] = subject #件名
-                msg['To'] = mail_to #宛先
+                msg['To'] = to_adress #宛先
                 msg['From'] =  my_adress#送信元
                 msg['Bcc'] = 'on12kyamamura@ec.usp.ac.jp'
                 return msg
@@ -161,7 +161,6 @@ if selected == "Entry":
                         """
                         # MIME形式に変換
                         msg = make_mime(
-                            mail_to='on12kyamamura@ec.usp.ac.jp', #送信したい宛先を指定
                             subject=f'出退勤記録簿報告について　瀧研究室 {number}{name_category}',
                             body=f'お世話になっております。瀧研究室{number}{name_category}です。\n{time}で{switch}致します。\n目的：{work_category}\n内容：{detail}\nよろしくお願いいたします。'
                             )
@@ -177,7 +176,6 @@ if selected == "Entry":
                     """
                     # MIME形式に変換
                     msg = make_mime(
-                        mail_to='on12kyamamura@ec.usp.ac.jp', #送信したい宛先を指定
                         subject=f'出退勤記録簿報告について　瀧研究室 {number}{name_category}',
                         body=f'お世話になっております。瀧研究室{number}{name_category}と申します。\n{time}で{switch}致します。\n目的：{work_category}\n内容：{detail}\nよろしくお願いいたします。'
                         )
@@ -193,7 +191,6 @@ if selected == "Entry":
                     """
                     # MIME形式に変換
                     msg = make_mime(
-                        mail_to='on12kyamamura@ec.usp.ac.jp', #送信したい宛先を指定
                         subject=f'出退勤記録簿報告について　瀧研究室 {number}{name_category}',
                         body=f'お世話になっております。瀧研究室{number}{name_category}と申します。\n{time}で{switch}致します。\n目的：{work_category}\n内容：{detail}\nよろしくお願いいたします。'
                         )
@@ -209,7 +206,6 @@ if selected == "Entry":
                     """
                     # MIME形式に変換
                     msg = make_mime(
-                        mail_to='on12kyamamura@ec.usp.ac.jp', #送信したい宛先を指定
                         subject=f'出退勤記録簿報告について　瀧研究室 {number}{name_category}',
                         body=f'お世話になっております。瀧研究室{number}{name_category}と申します。\n{time}で{switch}致します。\n目的：{work_category}\n内容：{detail}\nよろしくお願いいたします。'
                         )
@@ -225,7 +221,6 @@ if selected == "Entry":
                     """
                     # MIME形式に変換
                     msg = make_mime(
-                        mail_to='on12kyamamura@ec.usp.ac.jp', #送信したい宛先を指定
                         subject=f'出退勤記録簿報告について　瀧研究室 {number}{name_category}',
                         body=f'お世話になっております。瀧研究室{number}{name_category}と申します。\n{time}で{switch}致します。\n目的：{work_category}\n内容：{detail}\nよろしくお願いいたします。'
                         )
@@ -241,7 +236,6 @@ if selected == "Entry":
                     """
                     # MIME形式に変換
                     msg = make_mime(
-                        mail_to='on12kyamamura@ec.usp.ac.jp', #送信したい宛先を指定
                         subject=f'出退勤記録簿報告について　瀧研究室 {number}{name_category}',
                         body=f'お世話になっております。瀧研究室{number}{name_category}と申します。\n{time}で{switch}致します。\n目的：{work_category}\n内容：{detail}\nよろしくお願いいたします。'
                         )
@@ -257,7 +251,6 @@ if selected == "Entry":
                     """
                     # MIME形式に変換
                     msg = make_mime(
-                        mail_to='on12kyamamura@ec.usp.ac.jp', #送信したい宛先を指定
                         subject=f'出退勤記録簿報告について　瀧研究室 {number}{name_category}',
                         body=f'お世話になっております。瀧研究室{number}{name_category}と申します。\n{time}で{switch}致します。\n目的：{work_category}\n内容：{detail}\nよろしくお願いいたします。'
                         )
@@ -273,7 +266,6 @@ if selected == "Entry":
                     """
                     # MIME形式に変換
                     msg = make_mime(
-                        mail_to='on12kyamamura@ec.usp.ac.jp', #送信したい宛先を指定
                         subject=f'出退勤記録簿報告について　瀧研究室 {number}{name_category}',
                         body=f'お世話になっております。瀧研究室{number}{name_category}と申します。\n{time}で{switch}致します。\n目的：{work_category}\n内容：{detail}\nよろしくお願いいたします。'
                         )
@@ -289,7 +281,6 @@ if selected == "Entry":
                     """
                     # MIME形式に変換
                     msg = make_mime(
-                        mail_to='on12kyamamura@ec.usp.ac.jp', #送信したい宛先を指定
                         subject=f'出退勤記録簿報告について　瀧研究室 {number}{name_category}',
                         body=f'お世話になっております。瀧研究室{number}{name_category}と申します。\n{time}で{switch}致します。\n目的：{work_category}\n内容：{detail}\nよろしくお願いいたします。'
                         )
@@ -305,7 +296,6 @@ if selected == "Entry":
                     """
                     # MIME形式に変換
                     msg = make_mime(
-                        mail_to='on12kyamamura@ec.usp.ac.jp', #送信したい宛先を指定
                         subject=f'出退勤記録簿報告について　瀧研究室 {number}{name_category}',
                         body=f'お世話になっております。瀧研究室{number}{name_category}と申します。\n{time}で{switch}致します。\n目的：{work_category}\n内容：{detail}\nよろしくお願いいたします。'
                         )
