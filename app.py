@@ -129,7 +129,7 @@ if selected == "Entry":
             my_account = account
             my_password = pas
             my_adress = adress
-            to_adress = 'on12kyamamura@ec.usp.ac.jp'
+            to_adress = 'houkoku10@office.usp.ac.jp'
 
             def send_outlook_mail(msg):
                 """
@@ -151,7 +151,7 @@ if selected == "Entry":
                 msg['Subject'] = subject #件名
                 msg['To'] = to_adress #宛先
                 msg['From'] =  my_adress#送信元
-                msg['Bcc'] = 'kouki0129kouki0129@gmail.com'
+                msg['Bcc'] = my_adress
                 return msg
             
             if name_category == '泉野珠穂':
@@ -177,7 +177,7 @@ if selected == "Entry":
                     # MIME形式に変換
                     msg = make_mime(
                         subject=f'出退勤記録簿報告について　瀧研究室 {number}{name_category}',
-                        body=f'お世話になっております。瀧研究室{number}{name_category}です。\n{time}で{switch}致します。\n目的：{work_category}\n内容：{detail}\nよろしくお願いいたします。'
+                        body=f'瀧研究室{number}{name_category}です。\n{time}で{switch}致します。\n目的：{work_category}\n内容：{detail}\nよろしくお願いいたします。'
                         )
                     # gmailに送信
                     send_outlook_mail(msg)
@@ -192,7 +192,7 @@ if selected == "Entry":
                     # MIME形式に変換
                     msg = make_mime(
                         subject=f'出退勤記録簿報告について　瀧研究室 {number}{name_category}',
-                        body=f'お世話になっております。瀧研究室{number}{name_category}です。\n{time}で{switch}致します。\n目的：{work_category}\n内容：{detail}\nよろしくお願いいたします。'
+                        body=f'瀧研究室{number}{name_category}です。\n{time}で{switch}致します。\n目的：{work_category}\n内容：{detail}\nよろしくお願いいたします。'
                         )
                     # gmailに送信
                     send_outlook_mail(msg)
@@ -207,7 +207,7 @@ if selected == "Entry":
                     # MIME形式に変換
                     msg = make_mime(
                         subject=f'出退勤記録簿報告について　瀧研究室 {number}{name_category}',
-                        body=f'お世話になっております。瀧研究室{number}{name_category}です。\n{time}で{switch}致します。\n目的：{work_category}\n内容：{detail}\nよろしくお願いいたします。'
+                        body=f'瀧研究室{number}{name_category}です。\n{time}で{switch}致します。\n目的：{work_category}\n内容：{detail}\nよろしくお願いいたします。'
                         )
                     # gmailに送信
                     send_outlook_mail(msg)
@@ -222,7 +222,7 @@ if selected == "Entry":
                     # MIME形式に変換
                     msg = make_mime(
                         subject=f'出退勤記録簿報告について　瀧研究室 {number}{name_category}',
-                        body=f'お世話になっております。瀧研究室{number}{name_category}です。\n{time}で{switch}致します。\n目的：{work_category}\n内容：{detail}\nよろしくお願いいたします。'
+                        body=f'瀧研究室{number}{name_category}です。\n{time}で{switch}致します。\n目的：{work_category}\n内容：{detail}\nよろしくお願いいたします。'
                         )
                     # gmailに送信
                     send_outlook_mail(msg)
@@ -237,7 +237,7 @@ if selected == "Entry":
                     # MIME形式に変換
                     msg = make_mime(
                         subject=f'出退勤記録簿報告について　瀧研究室 {number}{name_category}',
-                        body=f'お世話になっております。瀧研究室{number}{name_category}です。\n{time}で{switch}致します。\n目的：{work_category}\n内容：{detail}\nよろしくお願いいたします。'
+                        body=f'瀧研究室{number}{name_category}です。\n{time}で{switch}致します。\n目的：{work_category}\n内容：{detail}\nよろしくお願いいたします。'
                         )
                     # gmailに送信
                     send_outlook_mail(msg)
@@ -252,7 +252,7 @@ if selected == "Entry":
                     # MIME形式に変換
                     msg = make_mime(
                         subject=f'出退勤記録簿報告について　瀧研究室 {number}{name_category}',
-                        body=f'お世話になっております。瀧研究室{number}{name_category}です。\n{time}で{switch}致します。\n目的：{work_category}\n内容：{detail}\nよろしくお願いいたします。'
+                        body=f'瀧研究室{number}{name_category}です。\n{time}で{switch}致します。\n目的：{work_category}\n内容：{detail}\nよろしくお願いいたします。'
                         )
                     # gmailに送信
                     send_outlook_mail(msg)
@@ -267,7 +267,7 @@ if selected == "Entry":
                     # MIME形式に変換
                     msg = make_mime(
                         subject=f'出退勤記録簿報告について　瀧研究室 {number}{name_category}',
-                        body=f'お世話になっております。瀧研究室{number}{name_category}です。\n{time}で{switch}致します。\n目的：{work_category}\n内容：{detail}\nよろしくお願いいたします。'
+                        body=f'瀧研究室{number}{name_category}です。\n{time}で{switch}致します。\n目的：{work_category}\n内容：{detail}\nよろしくお願いいたします。'
                         )
                     # gmailに送信
                     send_outlook_mail(msg)
@@ -282,7 +282,7 @@ if selected == "Entry":
                     # MIME形式に変換
                     msg = make_mime(
                         subject=f'出退勤記録簿報告について　瀧研究室 {number}{name_category}',
-                        body=f'お世話になっております。瀧研究室{number}{name_category}です。\n{time}で{switch}致します。\n目的：{work_category}\n内容：{detail}\nよろしくお願いいたします。'
+                        body=f'瀧研究室{number}{name_category}です。\n{time}で{switch}致します。\n目的：{work_category}\n内容：{detail}\nよろしくお願いいたします。'
                         )
                     # gmailに送信
                     send_outlook_mail(msg)
@@ -297,7 +297,7 @@ if selected == "Entry":
                     # MIME形式に変換
                     msg = make_mime(
                         subject=f'出退勤記録簿報告について　瀧研究室 {number}{name_category}',
-                        body=f'お世話になっております。瀧研究室{number}{name_category}です。\n{time}で{switch}致します。\n目的：{work_category}\n内容：{detail}\nよろしくお願いいたします。'
+                        body=f'瀧研究室{number}{name_category}です。\n{time}で{switch}致します。\n目的：{work_category}\n内容：{detail}\nよろしくお願いいたします。'
                         )
                     # gmailに送信
                     send_outlook_mail(msg)
