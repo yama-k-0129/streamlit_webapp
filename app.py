@@ -307,9 +307,6 @@ if selected == "Entry":
             else:
                 print('適切に入力してください。')
             
-#画像
-    image = Image.open('20221025_055301993_iOS.jpg')
-    st.image(image, width=500)
 
 if selected == "Private Report":
     st.header("Private Report")
