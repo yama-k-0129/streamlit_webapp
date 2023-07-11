@@ -84,6 +84,9 @@ if selected == "Entry":
     elif name_category == '坂本愛実':
         adress = st.secrets["saka_adress"]
         number = 2212016
+    elif name_category == '井上祐貴':
+        adress = st.secrets["ino_adress"]
+        number = 2112005
     else:
         print('名前を入力してください')
 
@@ -304,9 +307,25 @@ if selected == "Entry":
                 st.text(f'{name_category}さん！{time}に{switch}しました。')
                 sleep(wait_time)
                 send_saka_message()
+
+            elif name_category == '井上祐貴':
+                def send_ino_message():
+                    """
+                    メイン処理
+                    """
+                    # MIME形式に変換
+                    msg = make_mime(
+                        subject=f'出退勤記録簿報告について　瀧研究室 {number}{name_category}',
+                        body=f'瀧研究室{number}{name_category}です。\n{time}で{switch}致します。\n目的：{work_category}\n内容：{detail}\nよろしくお願いいたします。'
+                        )
+                    # gmailに送信
+                    send_outlook_mail(msg)
+                st.text(f'{name_category}さん！{time}に{switch}しました。')
+                sleep(wait_time)
+                send_ino_message()
             else:
                 print('適切に入力してください。')
-            
+                      
 
 if selected == "Private Report":
     st.header("Private Report")
