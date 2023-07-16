@@ -133,7 +133,7 @@ if selected == "Entry":
             
             # スレッドごとに非同期処理を実行
             async def insert_profile_async():
-                await db.insert_profile(daytime, name, date, work, time, switch)
+                db.insert_profile(daytime, name, date, work, time, switch)
 
             # 非同期処理を呼び出す
             loop.run_until_complete(insert_profile_async())
