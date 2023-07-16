@@ -35,10 +35,10 @@ selected = option_menu(
 
  #--------Database interface---------
 def get_all_profile():
-        items = db.fetch_all_profile()
-        names = [item["name"] for item in items]
-        names_list = list(set(names))
-        return names_list
+    items = db.fetch_all_profile()
+    names = [item["name"] for item in items]
+    names_list = list(set(names))
+    return names_list
 
 def get_all_daytime():
     items = db.fetch_all_profile()
@@ -337,19 +337,21 @@ if selected == "Private Report":
             for i in get_all_daytime():
                 data = db.get_private(i)
                 name_data = data.get("name")
-                if name == name_data:
-                    date = data.get("date")
+                date_data = data.get("date")
+                if name == name_data and date == date_data:
                     work = data.get("work")
                     time = data.get("time")
                     switch = data.get("switch")
                     i = pd.DataFrame(
-                        data = [{'date':date,
-                                'work':work, 
-                                'time':time, 
-                                'switch':switch}],
-                                index = None,)
-                    df = pd.concat([df,i])
-
+                        data=[{
+                            'date': date_data,
+                            'work': work,
+                            'time': time,
+                            'switch': switch
+                        }],
+                        index=None,
+                    )
+                    df = pd.concat([df, i])
             
 
             st.table(df)
