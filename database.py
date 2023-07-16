@@ -45,3 +45,6 @@ def get_private(daytime):
         return row
     except Exception as e:
         st.error(f"Error fetching profile: {str(e)}")
+
+# スレッドごとにデータベースにアクセスする場合、適切なタイミングで接続を確立します
+threading.Thread(target=insert_profile, args=(daytime, name, date, work, time, switch)).start()
