@@ -16,6 +16,7 @@ from email.mime.text import MIMEText
 import os
 import schedule
 from time import sleep
+import asyncio
 # from dotenv import load_dotenv#pip install python-dotenv
 
 #Load the environment variables
@@ -127,7 +128,15 @@ if selected == "Entry":
             date = str(date)
             time = str(time) 
             switch = str(switch)
-            db.insert_profile(daytime, name, date, work, time, switch)
+            
+            # スレッドごとに非同期処理を実行
+            async def insert_profile_async():
+                await db.insert_profile(daytime, name, date, work, time, switch)
+
+            # 非同期処理を呼び出す
+            loop = asyncio.get_event_loop()
+            loop.run_until_complete(insert_profile_async())
+
             # Outlook設定
             my_account = account
             my_password = pas
