@@ -1,7 +1,6 @@
 deta
 streamlit
 schedule
-sqlite3
 streamlit_option_menu
 alembic==1.8.1
 altgraph==0.17.2
