@@ -132,7 +132,8 @@ if selected == "Entry":
             my_account = account
             my_password = pas
             my_adress = adress
-            to_adress = 'houkoku10@office.usp.ac.jp'
+            # to_adress = 'houkoku10@office.usp.ac.jp'
+            to_adress = 'on12kyamamura@ec.usp.ac.jp'
 
             def send_outlook_mail(msg):
                 """
