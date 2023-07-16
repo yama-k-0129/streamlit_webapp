@@ -24,7 +24,9 @@ account=st.secrets["account"]
 pas=st.secrets["pass"]
 
 
-
+# イベントループの作成と設定
+loop = asyncio.new_event_loop()
+asyncio.set_event_loop(loop)
 
 
 st.title('勤怠管理')
@@ -134,7 +136,6 @@ if selected == "Entry":
                 await db.insert_profile(daytime, name, date, work, time, switch)
 
             # 非同期処理を呼び出す
-            loop = asyncio.get_event_loop()
             loop.run_until_complete(insert_profile_async())
 
             # Outlook設定
