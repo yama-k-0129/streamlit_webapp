@@ -46,5 +46,12 @@ def get_private(daytime):
     except Exception as e:
         st.error(f"Error fetching profile: {str(e)}")
 
-# スレッドごとにデータベースにアクセスする場合、適切なタイミングで接続を確立します
-threading.Thread(target=insert_profile, args=(daytime, name, date, work, time, switch)).start()
+# 非同期処理を行うためのイベントループを作成
+loop = asyncio.new_event_loop()
+
+# スレッドごとに非同期処理を実行
+async def insert_profile_async(daytime, name, date, work, time, switch):
+    await loop.run_in_executor(None, insert_profile, daytime, name, date, work, time, switch)
+
+# メインプログラムから非同期処理を呼び出す
+loop.run_until_complete(insert_profile_async(daytime, name, date, work, time, switch))
