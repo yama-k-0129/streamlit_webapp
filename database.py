@@ -37,7 +37,9 @@ def fetch_all_profile():
             c = conn.cursor()
             c.execute("SELECT * FROM work_reports")
             rows = c.fetchall()
-        return rows
+        columns = [desc[0] for desc in c.description]
+        results = [dict(zip(columns, row)) for row in rows]
+        return results
     except Exception as e:
         st.error(f"Error fetching profiles: {str(e)}")
 
