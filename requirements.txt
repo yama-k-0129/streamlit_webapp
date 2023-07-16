@@ -1,4 +1,5 @@
 deta
+asyncio
 streamlit
 schedule
 streamlit_option_menu
