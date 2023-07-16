@@ -331,6 +331,7 @@ if selected == "Private Report":
     st.header("Private Report")
     with st.form("saved_periods"):
         name = st.selectbox("Select Name:", get_all_profile())
+        month = st.selectbox("Select Month:", range(1, 13))
         submitted = st.form_submit_button("Display")
         if submitted:
             df = pd.DataFrame()
@@ -338,20 +339,22 @@ if selected == "Private Report":
                 data = db.get_private(i)
                 name_data = data.get("name")
                 date_data = data.get("date")
-                if name == name_data and date == date_data:
-                    work = data.get("work")
-                    time = data.get("time")
-                    switch = data.get("switch")
-                    i = pd.DataFrame(
-                        data=[{
-                            'date': date_data,
-                            'work': work,
-                            'time': time,
-                            'switch': switch
-                        }],
-                        index=None,
-                    )
-                    df = pd.concat([df, i])
+                if name == name_data:
+                    data_month = date_data.month
+                    if month == data_month:
+                        work = data.get("work")
+                        time = data.get("time")
+                        switch = data.get("switch")
+                        i = pd.DataFrame(
+                            data=[{
+                                'date': date_data,
+                                'work': work,
+                                'time': time,
+                                'switch': switch
+                            }],
+                            index=None,
+                        )
+                        df = pd.concat([df, i])
             
 
             st.table(df)
