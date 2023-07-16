@@ -1,5 +1,6 @@
 import sqlite3
 import streamlit as st
+import asyncio
 
 # Create or connect to the database
 conn = sqlite3.connect('work_reports.db')
