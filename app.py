@@ -196,27 +196,31 @@ if selected == "Private Report":
         submitted = st.form_submit_button("Display")
         if submitted:
             df = pd.DataFrame()
-            for i in get_all_daytime():
-                data = get_private(i)
-                if data is not None:
-                    name_data = data.get("name")
-                    date_data = data.get("date")
-                    if name == name_data:
-                        data_month = date_data.month
-                        if month == data_month:
-                            work = data.get("work")
-                            time = data.get("time")
-                            switch = data.get("switch")
-                            i = pd.DataFrame(
-                                data=[{
-                                    'date': date_data,
-                                    'work': work,
-                                    'time': time,
-                                    'switch': switch
-                                }],
-                                index=None,
-                            )
-                            df = pd.concat([df, i])
+            daytimes = get_all_daytime()
+            for i in daytimes:
+                try:
+                    data = get_private(i)
+                    if data is not None:
+                        name_data = data.get("name")
+                        date_data = data.get("date")
+                        if name == name_data:
+                            data_month = date_data.month
+                            if month == data_month:
+                                work = data.get("work")
+                                time = data.get("time")
+                                switch = data.get("switch")
+                                i = pd.DataFrame(
+                                    data=[{
+                                        'date': date_data,
+                                        'work': work,
+                                        'time': time,
+                                        'switch': switch
+                                    }],
+                                    index=None,
+                                )
+                                df = pd.concat([df, i])
+                except Exception as e:
+                    print(f"Error occurred with {i}: {e}")
 
             
 
