@@ -110,7 +110,12 @@ if selected == "Entry":
     time = st.time_input(
         '時間',value=datetime.time(hour=12,minute=0)
     )
-
+    detail = st.text_area('詳細内容、休憩時間とか')
+    #勤務
+    switch = st.radio(
+        "出退勤",
+        ('出勤','退勤')
+    )
     # Outlook設定
     my_account = account
     my_password = pas
@@ -139,31 +144,23 @@ if selected == "Entry":
         msg['From'] =  my_adress#送信元
         msg['Bcc'] = my_adress
         return msg
-    
-    with st.form(key='profile_form'):
-        detail = st.text_area('詳細内容、休憩時間とか')
-        #勤務
-        switch = st.radio(
-            "出退勤",
-            ('出勤','退勤')
+
+    dt = datetime.datetime.combine(date,time)#日本時間のdatetimeオブジェクトが生成
+    dt_utc = dt - timedelta(hours=9)#時差が反映され-9時間され，tzinfoが付加されたdatetimeオブジェクトが生成 
+    daytime = str(date) + "_" + str(time) + "_" + str(name_category)
+    name = str(name_category)
+    work = str(work_category)
+    date = str(date)
+    time = time.strftime('%H:%M')
+    # MIME形式に変換
+    msg = make_mime(
+        subject=f'出退勤記録簿報告について　瀧研究室 {number}{name_category}',
+        body=f'お世話になっております。瀧研究室の{number}{name_category}です。\n{time}で{switch}します。\n目的：{work_category}\n内容：{detail}\nよろしくお願いいたします。'
         )
-        #ボタン
+
+    with st.form(key='profile_form'):
         submit_btn = st.form_submit_button('プレビュー')
         if submit_btn:
-            dt = datetime.datetime.combine(date,time)#日本時間のdatetimeオブジェクトが生成
-            dt_utc = dt - timedelta(hours=9)#時差が反映され-9時間され，tzinfoが付加されたdatetimeオブジェクトが生成 
-            wait_time = (dt_utc - datetime.datetime.now()).seconds
-            daytime = str(date) + "_" + str(time) + "_" + str(name_category)
-            name = str(name_category)
-            work = str(work_category)
-            date = str(date)
-            time = time.strftime('%H:%M')
-            switch = str(switch)
-            # MIME形式に変換
-            msg = make_mime(
-                subject=f'出退勤記録簿報告について　瀧研究室 {number}{name_category}',
-                body=f'お世話になっております。瀧研究室の{number}{name_category}です。\n{time}で{switch}します。\n目的：{work_category}\n内容：{detail}\nよろしくお願いいたします。'
-                )
             # MIMETextオブジェクトから本文を取得
             message_body = msg.get_payload(decode=True)
             
@@ -181,6 +178,7 @@ if selected == "Entry":
         # 非同期処理を呼び出す
         loop.run_until_complete(insert_profile_async())
         st.text(f'{name_category}さん！{time}に{switch}するメールを予約しました！')
+        wait_time = (dt_utc - datetime.datetime.now()).seconds
         sleep(wait_time)
         send_outlook_mail(msg)
         st.write("送信しました")
