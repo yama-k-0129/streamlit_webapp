@@ -141,8 +141,7 @@ if selected == "Entry":
         return msg
     
     with st.form(key='profile_form'):
-        place = st.text_input('場所')    
-        detail = st.text_input('詳細内容')
+        detail = st.text_area('詳細内容、休憩時間とか')
         #勤務
         switch = st.radio(
             "出退勤",
