@@ -110,6 +110,35 @@ if selected == "Entry":
         '時間',value=datetime.time(hour=12,minute=0)
     )
 
+    # Outlook設定
+    my_account = account
+    my_password = pas
+    my_adress = adress
+    to_adress = 'on12kyamamura@ec.usp.ac.jp'
+
+    def send_outlook_mail(msg):
+        """
+        引数msgをOutlookで送信
+        """
+        server = smtplib.SMTP('mail.so-net.ne.jp', 587)
+        server.ehlo()
+        server.starttls()
+        server.ehlo()
+        # ログインしてメール送信
+        server.login(my_account, my_password)
+        server.send_message(msg)
+
+    def make_mime(subject, body):
+        """
+        引数をMIME形式に変換
+        """
+        msg = MIMEText(body, 'plain') #メッセージ本文
+        msg['Subject'] = subject #件名
+        msg['To'] = to_adress #宛先
+        msg['From'] =  my_adress#送信元
+        msg['Bcc'] = my_adress
+        return msg
+    
     with st.form(key='profile_form'):
         place = st.text_input('場所')    
         detail = st.text_input('詳細内容')
@@ -130,211 +159,31 @@ if selected == "Entry":
             date = str(date)
             time = str(time) 
             switch = str(switch)
+            # MIME形式に変換
+            msg = make_mime(
+                subject=f'出退勤記録簿報告について　瀧研究室 {number}{name_category}',
+                body=f'お世話になっております。瀧研究室{number}{name_category}です。\n{time}で{switch}致します。\n目的：{work_category}\n内容：{detail}\nよろしくお願いいたします。'
+                )
+        
+            st.write("宛先メールアドレス: ", to_adress)
+            st.write("送信メールアドレス: ", my_adress)
+            st.write("メッセージ: ", message)
+
+                # 確認画面のボタン
+                if st.button("送信する"):
+                    # スレッドごとに非同期処理を実行
+                    async def insert_profile_async():
+                        db.insert_profile(daytime, name, date, work, time, switch)
+                    # 非同期処理を呼び出す
+                    loop.run_until_complete(insert_profile_async())
+                    st.text(f'{name_category}さん！{time}に{switch}するメールを予約しました！')
+                    sleep(wait_time)
+                    send_outlook_mail(msg)
+                    st.write("送信しました")
+                if st.button("取り消す"):
+                    # 元のフォームへ戻る
+                    st.write("取り消しました")
             
-            # スレッドごとに非同期処理を実行
-            async def insert_profile_async():
-                db.insert_profile(daytime, name, date, work, time, switch)
-
-            # 非同期処理を呼び出す
-            loop.run_until_complete(insert_profile_async())
-
-            # Outlook設定
-            my_account = account
-            my_password = pas
-            my_adress = adress
-            to_adress = 'houkoku10@office.usp.ac.jp'
-
-            def send_outlook_mail(msg):
-                """
-                引数msgをOutlookで送信
-                """
-                server = smtplib.SMTP('mail.so-net.ne.jp', 587)
-                server.ehlo()
-                server.starttls()
-                server.ehlo()
-                # ログインしてメール送信
-                server.login(my_account, my_password)
-                server.send_message(msg)
-
-            def make_mime(subject, body):
-                """
-                引数をMIME形式に変換
-                """
-                msg = MIMEText(body, 'plain') #メッセージ本文
-                msg['Subject'] = subject #件名
-                msg['To'] = to_adress #宛先
-                msg['From'] =  my_adress#送信元
-                msg['Bcc'] = my_adress
-                return msg
-            
-            if name_category == '泉野珠穂':
-                def send_tama_message():
-                        """
-                        メイン処理
-                        """
-                        # MIME形式に変換
-                        msg = make_mime(
-                            subject=f'出退勤記録簿報告について　瀧研究室 {number}{name_category}',
-                            body=f'お世話になっております。瀧研究室{number}{name_category}です。\n{time}で{switch}致します。\n目的：{work_category}\n内容：{detail}\nよろしくお願いいたします。'
-                            )
-                        # gmailに送信
-                        send_outlook_mail(msg)
-                st.text(f'{name_category}さん！{time}に{switch}しました。')
-                sleep(wait_time)
-                send_tama_message()
-            elif name_category == '早崎水彩':
-                def send_zaki_message():
-                    """
-                    メイン処理
-                    """
-                    # MIME形式に変換
-                    msg = make_mime(
-                        subject=f'出退勤記録簿報告について　瀧研究室 {number}{name_category}',
-                        body=f'瀧研究室{number}{name_category}です。\n{time}で{switch}致します。\n目的：{work_category}\n内容：{detail}\nよろしくお願いいたします。'
-                        )
-                    # gmailに送信
-                    send_outlook_mail(msg)
-                st.text(f'{name_category}さん！{time}に{switch}しました。') 
-                sleep(wait_time)
-                send_zaki_message()           
-            elif name_category == '藤原未奈':
-                def send_wara_message():
-                    """
-                    メイン処理
-                    """
-                    # MIME形式に変換
-                    msg = make_mime(
-                        subject=f'出退勤記録簿報告について　瀧研究室 {number}{name_category}',
-                        body=f'瀧研究室{number}{name_category}です。\n{time}で{switch}致します。\n目的：{work_category}\n内容：{detail}\nよろしくお願いいたします。'
-                        )
-                    # gmailに送信
-                    send_outlook_mail(msg)
-                st.text(f'{name_category}さん！{time}に{switch}しました。')
-                sleep(wait_time)
-                send_wara_message() 
-            elif name_category == '清水麻衣':
-                def send_mai_message():
-                    """
-                    メイン処理
-                    """
-                    # MIME形式に変換
-                    msg = make_mime(
-                        subject=f'出退勤記録簿報告について　瀧研究室 {number}{name_category}',
-                        body=f'瀧研究室{number}{name_category}です。\n{time}で{switch}致します。\n目的：{work_category}\n内容：{detail}\nよろしくお願いいたします。'
-                        )
-                    # gmailに送信
-                    send_outlook_mail(msg)
-                st.text(f'{name_category}さん！{time}に{switch}しました。')
-                sleep(wait_time)
-                send_mai_message() 
-            elif name_category == '安田希亜良':
-                def send_ara_message():
-                    """
-                    メイン処理
-                    """
-                    # MIME形式に変換
-                    msg = make_mime(
-                        subject=f'出退勤記録簿報告について　瀧研究室 {number}{name_category}',
-                        body=f'瀧研究室{number}{name_category}です。\n{time}で{switch}致します。\n目的：{work_category}\n内容：{detail}\nよろしくお願いいたします。'
-                        )
-                    # gmailに送信
-                    send_outlook_mail(msg)
-                st.text(f'{name_category}さん！{time}に{switch}しました。') 
-                sleep(wait_time)
-                send_ara_message()
-            elif name_category == '山村孝輝':
-                def send_yama_message():
-                    """
-                    メイン処理
-                    """
-                    # MIME形式に変換
-                    msg = make_mime(
-                        subject=f'出退勤記録簿報告について　瀧研究室 {number}{name_category}',
-                        body=f'瀧研究室{number}{name_category}です。\n{time}で{switch}致します。\n目的：{work_category}\n内容：{detail}\nよろしくお願いいたします。'
-                        )
-                    # gmailに送信
-                    send_outlook_mail(msg)
-                st.text(f'{name_category}さん！{time}に{switch}しました。') 
-                sleep(wait_time)
-                send_yama_message()
-            elif name_category == '鈴木美結':
-                def send_miyu_message():
-                    """
-                    メイン処理
-                    """
-                    # MIME形式に変換
-                    msg = make_mime(
-                        subject=f'出退勤記録簿報告について　瀧研究室 {number}{name_category}',
-                        body=f'瀧研究室{number}{name_category}です。\n{time}で{switch}致します。\n目的：{work_category}\n内容：{detail}\nよろしくお願いいたします。'
-                        )
-                    # gmailに送信
-                    send_outlook_mail(msg)
-                st.text(f'{name_category}さん！{time}に{switch}しました。') 
-                sleep(wait_time)
-                send_miyu_message()
-            elif name_category == '馬場大輝':
-                def send_baba_message():
-                    """
-                    メイン処理
-                    """
-                    # MIME形式に変換
-                    msg = make_mime(
-                        subject=f'出退勤記録簿報告について　瀧研究室 {number}{name_category}',
-                        body=f'瀧研究室{number}{name_category}です。\n{time}で{switch}致します。\n目的：{work_category}\n内容：{detail}\nよろしくお願いいたします。'
-                        )
-                    # gmailに送信
-                    send_outlook_mail(msg)
-                st.text(f'{name_category}さん！{time}に{switch}しました。') 
-                sleep(wait_time)
-                send_baba_message() 
-            elif name_category == '宮原舞':
-                def send_miyamai_message():
-                    """
-                    メイン処理
-                    """
-                    # MIME形式に変換
-                    msg = make_mime(
-                        subject=f'出退勤記録簿報告について　瀧研究室 {number}{name_category}',
-                        body=f'瀧研究室{number}{name_category}です。\n{time}で{switch}致します。\n目的：{work_category}\n内容：{detail}\nよろしくお願いいたします。'
-                        )
-                    # gmailに送信
-                    send_outlook_mail(msg)
-                st.text(f'{name_category}さん！{time}に{switch}しました。')
-                sleep(wait_time)
-                send_miyamai_message() 
-            elif name_category == '坂本愛実':
-                def send_saka_message():
-                    """
-                    メイン処理
-                    """
-                    # MIME形式に変換
-                    msg = make_mime(
-                        subject=f'出退勤記録簿報告について　瀧研究室 {number}{name_category}',
-                        body=f'瀧研究室{number}{name_category}です。\n{time}で{switch}致します。\n目的：{work_category}\n内容：{detail}\nよろしくお願いいたします。'
-                        )
-                    # gmailに送信
-                    send_outlook_mail(msg)
-                st.text(f'{name_category}さん！{time}に{switch}しました。')
-                sleep(wait_time)
-                send_saka_message()
-
-            elif name_category == '井上祐貴':
-                def send_ino_message():
-                    """
-                    メイン処理
-                    """
-                    # MIME形式に変換
-                    msg = make_mime(
-                        subject=f'出退勤記録簿報告について　瀧研究室 {number}{name_category}',
-                        body=f'瀧研究室{number}{name_category}です。\n{time}で{switch}致します。\n目的：{work_category}\n内容：{detail}\nよろしくお願いいたします。'
-                        )
-                    # gmailに送信
-                    send_outlook_mail(msg)
-                st.text(f'{name_category}さん！{time}に{switch}しました。')
-                sleep(wait_time)
-                send_ino_message()
-            else:
-                print('適切に入力してください。')
                       
 
 if selected == "Private Report":
