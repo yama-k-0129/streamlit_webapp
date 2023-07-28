@@ -17,6 +17,7 @@ import os
 import schedule
 from time import sleep
 import asyncio
+import codecs
 # from dotenv import load_dotenv#pip install python-dotenv
 
 #Load the environment variables
@@ -164,7 +165,7 @@ if selected == "Entry":
                 subject=f'出退勤記録簿報告について　瀧研究室 {number}{name_category}',
                 body=f'お世話になっております。瀧研究室{number}{name_category}です。\n{time}で{switch}致します。\n目的：{work_category}\n内容：{detail}\nよろしくお願いいたします。'
                 )
-        
+            msg_utf8 = codecs.decode(codecs.encode(msg, 'shift_jis'), 'utf-8')
             st.write("宛先メールアドレス: ", to_adress)
             st.write("送信メールアドレス: ", my_adress)
             st.write("メッセージ: ", msg)
