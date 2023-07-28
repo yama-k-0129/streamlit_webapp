@@ -169,20 +169,20 @@ if selected == "Entry":
             st.write("送信メールアドレス: ", my_adress)
             st.write("メッセージ: ", msg)
 
-            # 確認画面のボタン
-        if st.button("送信する"):
-            # スレッドごとに非同期処理を実行
-            async def insert_profile_async():
-                db.insert_profile(daytime, name, date, work, time, switch)
-            # 非同期処理を呼び出す
-            loop.run_until_complete(insert_profile_async())
-            st.text(f'{name_category}さん！{time}に{switch}するメールを予約しました！')
-            sleep(wait_time)
-            send_outlook_mail(msg)
-            st.write("送信しました")
-        if st.button("取り消す"):
-            # 元のフォームへ戻る
-            st.write("取り消しました")
+        # 確認画面のボタン
+    if st.button("送信する"):
+        # スレッドごとに非同期処理を実行
+        async def insert_profile_async():
+            db.insert_profile(daytime, name, date, work, time, switch)
+        # 非同期処理を呼び出す
+        loop.run_until_complete(insert_profile_async())
+        st.text(f'{name_category}さん！{time}に{switch}するメールを予約しました！')
+        sleep(wait_time)
+        send_outlook_mail(msg)
+        st.write("送信しました")
+    if st.button("取り消す"):
+        # 元のフォームへ戻る
+        st.write("取り消しました")
             
                       
 
