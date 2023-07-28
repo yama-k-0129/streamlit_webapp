@@ -168,7 +168,7 @@ if selected == "Entry":
             msg_utf8 = codecs.decode(codecs.encode(msg, 'shift_jis'), 'utf-8')
             st.write("宛先メールアドレス: ", to_adress)
             st.write("送信メールアドレス: ", my_adress)
-            st.write("メッセージ: ", msg)
+            st.write("メッセージ: ", msg_utf8)
 
         # 確認画面のボタン
     if st.button("送信する"):
