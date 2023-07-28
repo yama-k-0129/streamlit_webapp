@@ -167,7 +167,7 @@ if selected == "Entry":
         
             st.write("宛先メールアドレス: ", to_adress)
             st.write("送信メールアドレス: ", my_adress)
-            st.write("メッセージ: ", message)
+            st.write("メッセージ: ", msg)
 
             # 確認画面のボタン
             if st.button("送信する"):
