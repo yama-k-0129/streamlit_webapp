@@ -163,7 +163,7 @@ if selected == "Entry":
             # MIME形式に変換
             msg = make_mime(
                 subject=f'出退勤記録簿報告について　瀧研究室 {number}{name_category}',
-                body=f'お世話になっております。瀧研究室{number}{name_category}です。\n{time}で{switch}致します。\n目的：{work_category}\n内容：{detail}\nよろしくお願いいたします。'
+                body=f'お世話になっております。瀧研究室の{number}　　{name_category}です。\n{time}で{switch}致します。\n目的：{work_category}\n内容：{detail}\nよろしくお願いいたします。'
                 )
             # MIMETextオブジェクトから本文を取得
             message_body = msg.get_payload(decode=True)
