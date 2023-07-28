@@ -158,7 +158,7 @@ if selected == "Entry":
             name = str(name_category)
             work = str(work_category)
             date = str(date)
-            time = str(time) 
+            time = time.strftime('%H:%M')
             switch = str(switch)
             # MIME形式に変換
             msg = make_mime(
