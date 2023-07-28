@@ -71,10 +71,10 @@ if selected == "Entry":
         number = 1912012
     elif name_category == '安田希亜良':
         adress = st.secrets["ara_adress"]
-        number = 1912039
+        number = 2352018
     elif name_category == '山村孝輝':
         adress = st.secrets["yama_adress"]
-        number = 1912040
+        number = 2352019
     elif name_category == '鈴木美結':
         adress = st.secrets["miyu_adress"]
         number = 2012015
