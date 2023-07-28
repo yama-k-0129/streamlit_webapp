@@ -165,17 +165,15 @@ if selected == "Entry":
                 subject=f'出退勤記録簿報告について　瀧研究室 {number}{name_category}',
                 body=f'お世話になっております。瀧研究室{number}{name_category}です。\n{time}で{switch}致します。\n目的：{work_category}\n内容：{detail}\nよろしくお願いいたします。'
                 )
-            # msgはmake_mime()の結果とします
-            encoded_text = msg            
-            # エンコーディングされたテキストをバイト列に変換します
-            encoded_bytes = encoded_text.encode('utf-8')    
-            # エンコーディングされたバイト列をデコードします
-            decoded_bytes = base64.b64decode(encoded_bytes)    
-            # デコードしたバイト列をutf-8文字列に変換します
-            decoded_text = decoded_bytes.decode('utf-8')
+            # エンコードされたテキスト（Base64エンコードされたバイナリをUTF-8でエンコードしたもの）をUTF-8でデコード
+            decoded_text = msg.decode('utf-8')        
+            # さらにそのテキストをBase64でデコード
+            decoded_bytes = base64.b64decode(decoded_text)            
+            # そして、得られたバイナリをUTF-8でデコードして元のテキストに戻す
+            original_text = decoded_bytes.decode('utf-8')
             st.write("宛先メールアドレス: ", to_adress)
             st.write("送信メールアドレス: ", my_adress)
-            st.write("メッセージ: ", decoded_text)
+            st.write("メッセージ: ", original_text)
 
         # 確認画面のボタン
     if st.button("送信する"):
