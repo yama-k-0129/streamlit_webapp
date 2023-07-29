@@ -151,7 +151,6 @@ if selected == "Entry":
     work = str(work_category)
     date = str(date)
     time = time.strftime('%H:%M')
-    daytime = date + "_" + time + "_" + name_category + "_" + work + "_" + str(detail) + "_" + str(switch)   
     # MIME形式に変換
     msg = make_mime(
         subject=f'出退勤記録簿報告について　瀧研究室 {number}{name_category}',
@@ -174,7 +173,7 @@ if selected == "Entry":
     if st.button("送信する"):
         # スレッドごとに非同期処理を実行
         async def insert_profile_async():
-            db.insert_profile(daytime, name, date, work, time, switch)
+            db.insert_profile(name, date, work, time, switch)
         # 非同期処理を呼び出す
         loop.run_until_complete(insert_profile_async())
         st.text(f'{name_category}さん！{time}に{switch}するメールを予約しました！')
