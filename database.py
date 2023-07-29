@@ -18,7 +18,7 @@ c.execute('''
 ''')
 conn.commit()
 
-def insert_profile(daytime, name, date, work, time, switch):
+def insert_profile(name, date, work, time, switch):
     """Returns the report on successful creation, otherwise raises an error"""
     try:
         with sqlite3.connect('work_reports.db') as conn:
