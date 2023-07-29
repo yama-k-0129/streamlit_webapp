@@ -202,7 +202,7 @@ if selected == "Private Report":
                     data = get_private(i)
                     if data is not None:
                         name_data = data.get("name")
-                        date_data = data.get("date")
+                        date_data = datetime.strptime(data.get("date"), '%Y-%m-%d')
                         if name == name_data:
                             data_month = date_data.month
                             if month == data_month:
