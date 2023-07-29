@@ -147,11 +147,11 @@ if selected == "Entry":
 
     dt = datetime.datetime.combine(date,time)#日本時間のdatetimeオブジェクトが生成
     dt_utc = dt - timedelta(hours=9)#時差が反映され-9時間され，tzinfoが付加されたdatetimeオブジェクトが生成 
-    daytime = str(date) + "_" + str(time) + "_" + str(name_category)
     name = str(name_category)
     work = str(work_category)
     date = str(date)
     time = time.strftime('%H:%M')
+    daytime = date + "_" + time + "_" + name_category + "_" + work + "_" + str(detail) + "_" + str(switch)   
     # MIME形式に変換
     msg = make_mime(
         subject=f'出退勤記録簿報告について　瀧研究室 {number}{name_category}',
