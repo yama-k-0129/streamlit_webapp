@@ -5,10 +5,10 @@ import streamlit as st
 conn = sqlite3.connect('work_reports.db')
 c = conn.cursor()
 
-# Create the table if it doesn't exist
+# Create the table
 c.execute('''
     CREATE TABLE IF NOT EXISTS work_reports (
-        key TEXT PRIMARY KEY,
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
         name TEXT,
         date TEXT,
         work TEXT,
@@ -23,8 +23,10 @@ def insert_profile(daytime, name, date, work, time, switch):
     try:
         with sqlite3.connect('work_reports.db') as conn:
             c = conn.cursor()
-            c.execute("INSERT INTO work_reports (key, name, date, work, time, switch) VALUES (?, ?, ?, ?, ?, ?)",
-                      (daytime, name, date, work, time, switch))
+            c.execute(
+                "INSERT INTO work_reports (name, date, work, time, switch) VALUES (?, ?, ?, ?, ?)",
+                (name, date, work, time, switch)
+            )
             conn.commit()
         return "Profile inserted successfully"
     except Exception as e:
